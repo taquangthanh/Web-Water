@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/weblayout}"
+      th:replace="~{/layout/weblayout :: dynamic(~{ :: body})}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <form action="" method="get">
+        <div class="card">
+            <div class="card-header">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-3 fs-5">Manage Water</div>
+                    <div class="col-2">
+                        <a class="btn btn-success ml-5" th:href="@{/product/new-product}">Add</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover m-0 p-0">
+                    <thead>
+                    <th>Name</th>
+                    <th>Created Date</th>
+                    <th>Type</th>
+                    <th>Photo</th>
+                    <th>Producer</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th colspan="2">Activity</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product : ${listproduct } ">
+                        <td th:utext="${product.name }"></td>
+                        <td th:utext="${product.createdDate }"></td>
+                        <td th:utext="${product.type }"></td>
+                        <td th:utext="${product.photo }"></td>
+                        <td th:utext="${product.producer }"></td>
+                        <td th:utext="${product.quantity }"></td>
+                        <td th:utext="${product.price }"></td>
+                        <td><a class="btn btn-warning"
+                               th:href="@{/product/edit(id=${product.id})}">
+                            <span>Edit</span>
+                        </a></td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                Delete
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            U sure delete it ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <a th:href="@{/product/delete(id=${product.id})}" type="button" class="btn btn-primary">Alright</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">-->
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-primary mr-1 ${currentPage==0?'disabled':'' }" th:href="@{/product/list?page=0}"
+                    > <span
+                            class="fas fa-backward"><<</span>
+                    </a> <a class="btn btn-primary mr-1 ${currentPage==0?'disabled':'' }"
+                            th:href="@{/product/list(name=${title},page=${currentPage - 1})}"
+                > <span
+                        class="fas fa-backward-step"><</span>
+                </a>
+                    <h3 th:utext="${currentPage+1 }"></h3>
+                    <h3>/</h3>
+                    <h3 th:utext="${maxPage }"></h3>
+                    <a class="btn btn-primary mr-1 ${currentPage==maxPage-1?'disabled':'' }"
+                       th:href="@{/product/list(page=${currentPage + 1})}"
+                    > <span
+                            class="fas fa-forward-step"> > </span>
+                    </a> <a class="btn btn-primary ${currentPage==maxPage-1?'disabled':'' }"
+                            th:href="@{/product/list(page=${maxPage - 1 })}"
+                > <span
+                        class="fas fa-forward"> >></span>
+                </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

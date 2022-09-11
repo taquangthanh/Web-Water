@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/weblayout}"
+      th:replace="~{/layout/weblayout :: dynamic(~{ :: body})}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-8 d-flex justify-content-center">
+            <form th:action="@{/product/create-product}" th:object="${productReq}" method="post">
+                <div class="card">
+                    <h5 class="card-header">Add new water</h5>
+                    <div class="card-body">
+                        <div class="mt-2">
+                            <label>Name</label>
+                            <input type="text" th:field="*{name}" name="name" class="form-control" required="required">
+                        </div>
+                        <div class="mt-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label>Type</label>
+                                    <select  class="form-select" name="type">
+                                        <th:block th:each="t : ${type}">
+                                        <option th:value="${t }" th:utext="${t }"></option>
+                                        </th:block>
+                                </select>
+                                </div>
+                                <div class="col-4">
+                                    <label>Photo</label>
+                                    <input type="file" th:field="*{photo}" name="photo"
+                                                                class="form-control" required="required">
+                                </div>
+                                <div class="col-4">
+                                    <label>producer</label>
+                                    <input type="text" name="producer" th:field="*{producer}"
+                                                                   class="form-control" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Quantity</label>
+                                    <input type="number" name="quantity" th:field="*{quantity}"
+                                                                   class="form-control" required="required" value="0"
+                                                                   min="0">
+                                </div>
+                                <div class="col-6">
+                                    <label>Price</label>
+                                    <div class="input-group">
+                                        <input type="number" th:field="*{price}" name="price" class="form-control"
+                                               required="required" value="0" min="0"> <span
+                                            class="input-group-text">vnđ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        <button type="submit" class="btn btn-success">Add</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

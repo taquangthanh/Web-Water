@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/weblayout}"
+      th:replace="~{/layout/weblayout :: dynamic(~{ :: body})}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-8 d-flex justify-content-center">
+            <form th:action="@{/product/update(id=${product.id })}" th:object="${productReq}" method="post">
+                <div class="card">
+                    <h5 class="card-header">Update product</h5>
+                    <div class="card-body">
+                        <div class="mt-2">
+                            <label>Name
+                            </label>
+                            <input type="text" name="name" th:field="*{name}" th:value="${product.name}"
+                                            class="form-control">
+                        </div>
+                        <div class="mt-2">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label>Type</label> < <select class="form-select" name="type">
+                                    <th:block th:each="t : ${type}">
+                                        <option th:value="${t }" th:utext="${t }"></option>
+                                    </th:block>
+                                </select>
+                                </div>
+                                <div class="col-4">
+                                    <label>Photo</label> <input type="file"  name="photo" th:field="*{photo}" th:value="${product.photo}"
+                                                                class="form-control" >
+                                </div>
+                                <div class="col-4">
+                                    <label>producer</label> <input type="text" name="producer" th:field="*{producer}" th:value="${product.producer}"
+                                                                   class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Quantity</label> <input type="number" name="quantity" th:field="*{quantity}" th:value="${product.quantity}"
+                                                                   class="form-control" >
+                                </div>
+                                <div class="col-6">
+                                    <label>Price</label>
+                                    <div class="input-group">
+                                        <input type="number" name="price" class="form-control"
+                                               th:field="*{price}" th:value ="${product.price}"> <span
+                                            class="input-group-text">vnđ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        <button class="btn btn-success">Update</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

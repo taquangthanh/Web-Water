@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="header">
+<div class="container-fluid">
+    <div class="row bg-secondary py-1 px-xl-5">
+        <div class="col-lg-6 text-center text-lg-right">
+            <div class="d-inline-flex align-items-center">
+                <div class="btn-group">
+                            <button type="button"
+                                    class="btn btn-sm btn-light dropdown-toggle offset-6"
+                                    data-toggle="dropdown" >Welcome
+<!--                                <div th:with="condition=${userLogined.name }" th:remove="tag">-->
+<!--                                    <h2 th:if="${condition}" th:utext="${condition}"> </h2>-->
+<!--                                    <span th:unless="${condition}" class="xxx">Login right now</span>-->
+<!--                                </div>-->
+<!--                                <span th:text="${userLogined.name }"></span>-->
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" type="button" th:href="@{/logout}">Logout
+                                    up</a>
+                            </div>
+                </div>
+            </div>
+            <div class="d-inline-flex align-items-center d-block d-lg-none">
+                <a href="" class="btn px-0 ml-2"> <i
+                        class="fas fa-heart text-dark"></i> <span
+                        class="badge text-dark border border-dark rounded-circle"
+                        style="padding-bottom: 2px;">0</span>
+                </a> <a href="" class="btn px-0 ml-2"> <i
+                    class="fas fa-shopping-cart text-dark"></i> <span
+                    class="badge text-dark border border-dark rounded-circle"
+<!--                    style="padding-bottom: 2px;">${sl }</span>-->
+            </a>
+            </div>
+        </div>
+    </div>
+    <div
+            class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+        <div class="col-lg-4">
+            <a href="/index" class="text-decoration-none"> <span
+                    class="h1 text-uppercase text-primary bg-dark px-2">TQT</span> <span
+                    class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">PH17187</span>
+            </a>
+        </div>
+        <div class="col-lg-4 col-6 text-left">
+            <form th:action="@{/product}" method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="name"
+                           placeholder="Search for products">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->
+
+
+<!-- Navbar Start -->
+<div class="container-fluid bg-dark mb-30">
+    <div class="row px-xl-5">
+        <div class="col-lg-3 d-none d-lg-block">
+            <a
+                    class="btn d-flex align-items-center justify-content-between bg-primary w-100"
+                    data-toggle="collapse" href="#navbar-vertical"
+                    style="height: 65px; padding: 0 30px;">
+                <h6 class="text-dark m-0">
+                    <i class="fa fa-bars mr-2"></i>DrinkWaters
+                </h6> <i class=" text-dark"></i>
+            </a>
+
+        </div>
+        <div class="col-lg-9">
+            <nav
+                    class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                <a href="" class="text-decoration-none d-block d-lg-none">
+                    <span class="h1 text-uppercase text-dark bg-light px-2">TQT</span>
+                    <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">PH17187</span>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse"
+                        data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between"
+                     id="navbarCollapse">
+                    <div class="navbar-nav mr-auto py-0">
+                        <a th:href="@{/product}" class="nav-item nav-link active">Home</a> <a
+                            href="/listorder" class="nav-item nav-link">History</a> <a
+                            th:href="@{/product/list}" class="nav-item nav-link">Product</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"
+                               data-toggle="dropdown">Pages <i
+                                    class="fa fa-angle-down mt-1"></i></a>
+                            <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                <a href="/cart" class="dropdown-item">Shopping Cart</a>
+                                <!-- <a
+                                    href="checkout.html" class="dropdown-item">Checkout</a> -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
+                        <a href="/cart" class="btn px-0 ml-3"> <i
+                                class="fas fa-shopping-cart text-primary"></i> <span
+                                class="badge text-secondary border border-secondary rounded-circle"
+                                style="padding-bottom: 2px;" th:utext="${size }"></span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Navbar End -->
+<!-- Featured Start -->
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5 pb-3">
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4"
+                 style="padding: 30px;">
+                <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4"
+                 style="padding: 30px;">
+                <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4"
+                 style="padding: 30px;">
+                <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-light mb-4"
+                 style="padding: 30px;">
+                <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Featured End -->
+</header>
+</html>

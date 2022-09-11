@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      th:replace="~{/layout/weblayout :: dynamic(~{ :: body})}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body layout:fragment="content">
+<div class="container-fluid pt-5 pb-3">
+    <h2
+            class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+        <span class="bg-secondary pr-3">Recent Products</span>
+    </h2>
+    <div class="row px-xl-5">
+        <th:block th:each="product:${listproduct}">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100 h-50" th:src="@{'/img/'+${product.photo}}"
+                             alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" th:href="@{/product/detail(id=${product.id })}"><i
+                                    class="fa fa-shopping-cart"></i></a> <a
+                                class="btn btn-outline-dark btn-square" href=""><i
+                                class="far fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href="" th:utext="${product.name }"></a>
+                        <div
+                                class="d-flex align-items-center justify-content-center mt-2">
+                            <h5 th:utext="${product.price }"> </h5>
+                        </div>
+                        <div
+                                class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small> <small
+                                class="fa fa-star text-primary mr-1"></small> <small
+                                class="fa fa-star text-primary mr-1"></small> <small
+                                class="fa fa-star text-primary mr-1"></small> <small
+                                class="fa fa-star text-primary mr-1"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</div>
+</body>
+</html>
